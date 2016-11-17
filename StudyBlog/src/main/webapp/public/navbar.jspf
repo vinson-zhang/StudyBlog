@@ -32,8 +32,8 @@
 				</ul>
 
 				<ul id="nologined" class="nav navbar-nav">
-					<li><span><a class="btn" href="#">登录</a></span></li>
-					<li><span><a class="btn" href="#">注册</a></span></li>
+					<li><span><a class="btn" href="${basePath}/StudyBlog/user/login">登录</a></span></li>
+					<li><span><a class="btn" href="${basePath}/StudyBlog/user/signin">注册</a></span></li>
 				</ul>
 			</div>
 			<!--

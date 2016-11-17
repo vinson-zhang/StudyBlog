@@ -22,5 +22,17 @@ public class UserController {
 		System.out.println(password);
 		return "main";
 	}
+	
+	//进入登录界面
+	@RequestMapping(value="login")
+	public String toLogin(){
+		return "user/login";
+	}
+	
+	//进入注册界面
+	@RequestMapping(value="signin")
+	public String toSignin(){
+		return "user/signin";
+	}
 
 }

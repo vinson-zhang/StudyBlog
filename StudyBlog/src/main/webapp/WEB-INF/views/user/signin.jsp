@@ -9,7 +9,7 @@
 <link type="text/css" rel="stylesheet"
 	href="${basepath}/StudyBlog/css/user/signin.css"></link>
 <title>StudyBlog | 注册</title>
-</head>hellohello
+</head>
 <body>
 	<div>
 		<div class="panel panel-primary login-side">
