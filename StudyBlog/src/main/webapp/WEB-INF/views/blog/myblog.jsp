@@ -32,7 +32,7 @@
 				</div>
 				<div class="hotblogs">
 					<div class="hotblog">
-						<p>博客1</p>
+						<p><a href="${basePath}/StudyBlog/blog/blogDetail/2">博客1</a></p>
 					</div>
 					<div class="hotblog">
 						<p>博客2</p>

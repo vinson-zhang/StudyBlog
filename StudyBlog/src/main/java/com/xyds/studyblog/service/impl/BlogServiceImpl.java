@@ -1,5 +1,7 @@
 package com.xyds.studyblog.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,19 @@ public class BlogServiceImpl implements BlogService {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	@Override
+	public Blog selectBlogById(int blogId) {
+		Blog blog = blogDao.selectBlogById(blogId);
+		
+		return blog;
+	}
+
+	@Override
+	public List<Blog> selectMyBlogsByPage(String username) {
+		List<Blog> blogs = blogDao.selectMyBlogsByPage(username);
+		return blogs;
 	}
 
 }

@@ -6,10 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.xyds.studyblog.bean.Blog;
 import com.xyds.studyblog.service.BlogService;
@@ -34,6 +36,8 @@ public class BlogController {
 	 */
 	@RequestMapping(value="/myblog")
 	public String toMyBlogPage(){
+		List<Blog> blogs = blogService.selectMyBlogsByPage("mike");
+		
 		return "blog/myblog";
 	}
 	
@@ -44,6 +48,20 @@ public class BlogController {
 	@RequestMapping(value="/writeBlog")
 	public String toWriteBlogPage(){
 		return "blog/writeBlog";
+	}
+	
+	/**
+	 * 根据blogID 查询blog的详细信息，并跳转到详细信息页面
+	 * @param blogId
+	 * @return
+	 */
+	@RequestMapping(value="/blogDetail/{blogId}")
+	public ModelAndView toBlogDetail(@PathVariable int blogId){
+		ModelAndView mav = new ModelAndView();
+		Blog blog = blogService.selectBlogById(blogId);
+		mav.addObject("blog", blog);
+		mav.setViewName("blog/blogDetail");
+		return mav;
 	}
 	
 	/**
@@ -62,7 +80,9 @@ public class BlogController {
 		}else{
 			return "failed";
 		}
-		
 	}
+	
+	
+	
 
 }

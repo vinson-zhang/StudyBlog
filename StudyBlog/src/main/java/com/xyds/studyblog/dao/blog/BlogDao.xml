@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xyds.studyblog.dao.blog.BlogDao">
+
+	<select id="selectBlogById" parameterType="int" resultType="com.xyds.studyblog.bean.Blog">
+		select 
+			blog_id as id,
+			blog_name as name,
+			blog_author as author,
+			blog_content as content,
+			blog_create_time as createTime,
+			blog_modify_time as modifyTime,
+			blog_isVisible as isVisible
+		 from t_blog where blog_id = #{blogId}
+	</select>
+	
+	<select id="selectMyBlogsByPage" parameterType="String" resultType="com.xyds.studyblog.bean.Blog">
+		select 
+			blog_id as id,
+			blog_name as name,
+			blog_author as author,
+			blog_content as content,
+			blog_create_time as createTime,
+			blog_modify_time as modifyTime,
+			blog_isVisible as isVisible
+		 from t_blog 
+		 where blog_author =(
+		 	select user_id 
+		 	from t_user
+		 	where email = #{username}
+		 )
+	</select>
+	
    <insert id="addBlog" parameterType="com.xyds.studyblog.bean.Blog">
       insert into t_blog(blog_name,blog_author,blog_content,blog_modify_time,blog_isVisible)
       values(#{name},#{author},#{content},#{modifyTime},#{isVisible})

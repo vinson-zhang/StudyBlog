@@ -1,5 +1,7 @@
 package com.xyds.studyblog.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.xyds.studyblog.bean.Blog;
@@ -19,5 +21,19 @@ public interface BlogService {
 	 * @return
 	 */
 	public int addBlog(Blog blog);
+	
+	/**
+	 * 根据博客ID查询博客详细信息
+	 * @param blogId
+	 * @return
+	 */
+	public Blog selectBlogById(int blogId);
+	
+	/**
+	 * 根据用户名，即email查询用户所有的博客，分页，（暂时不分页）
+	 * @param username
+	 * @return
+	 */
+	public List<Blog> selectMyBlogsByPage(String username);
 
 }
