@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 作用：会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+            <!-- 配置Fastjson支持 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <list>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	  <!-- jackson配置 
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
+        <property name="messageConverters">  
+        <list>  
+            <ref bean="mappingJacksonHttpMessageConverter" />  
+        </list>  
+        </property>  
+    </bean>    
+    <bean id="mappingJacksonHttpMessageConverter"    
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />     
+-->
+	<context:component-scan base-package="com.xyds.studyblog.controller" />
+
+	<!-- 配置视图解析器 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 访问静态资源文件 -->
+	<mvc:default-servlet-handler/>
+	<!-- <mvc:default-servlet-handler/> 需要在web.xml中配置 -->
+    <!--   配置访问使其能访问静态资源，即使相应的请求不被拦截
+	<mvc:resources mapping="/images/**" location="/images/" ></mvc:resources>
+	<mvc:resources mapping="/css/**" location="/css/" ></mvc:resources>
+	<mvc:resources mapping="/js/**" location="/js/" ></mvc:resources>
+	<mvc:resources mapping="/public/**" location="/public/" ></mvc:resources>
+	-->
+
+	<!--配置上传文件数据解析器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<value>9242880</value>
+		</property>
+	</bean>
+	
+
+
+</beans>

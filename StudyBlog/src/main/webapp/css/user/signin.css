@@ -1,0 +1,14 @@
+body{
+	margin:0px auto;
+	width: 80%;
+}
+
+.panel-title{
+	text-align: left;
+}
+
+.login-side{
+	margin:0px auto;
+	width: 50%;
+	margin-top: 8%;
+}
