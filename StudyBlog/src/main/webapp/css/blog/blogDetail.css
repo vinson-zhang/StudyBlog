@@ -1,0 +1,17 @@
+.blog-title{
+	font-family: "黑体","微软雅黑";
+	font-size: 25px;
+	color: cadetblue;
+	margin: 10px 0;
+}
+
+.blog-other{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #5F9EA0;
+	padding: 5px;
+}
+
+.blog-content{
+	font-family:"宋体" ;
+}

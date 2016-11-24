@@ -96,13 +96,13 @@
 				<!-- 轮播（Carousel）项目 -->
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="images/carousel/one.jpg" alt="one">
+						<img src="/StudyBlog/images/carousel/one.jpg" alt="one">
 					</div>
 					<div class="item">
-						<img src="images/carousel/two.jpg" alt="two">
+						<img src="/StudyBlog/images/carousel/two.jpg" alt="two">
 					</div>
 					<div class="item">
-						<img src="images/carousel/three.jpg" alt="three">
+						<img src="/StudyBlog/images/carousel/three.jpg" alt="three">
 					</div>
 				</div>
 				<!-- 轮播（Carousel）导航 -->

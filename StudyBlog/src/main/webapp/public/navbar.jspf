@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 	<div id="navbar" class="navbar-collapse collapse">
 
 		<div class="navbar-self">
@@ -23,18 +24,28 @@
 						</ul></li>
 				</ul>
 			</div>
-
+			
+			
 			<div class="navbar-right">
-				<ul id="logined" class="nav navbar-nav" style="display: none;">
-					<li><span>欢迎：<a id="userinfo" class="btn" href="#">碧琳</a></span>
-					</li>
-					<li><span><a class="btn" href="#">退出</a></span></li>
-				</ul>
-
-				<ul id="nologined" class="nav navbar-nav">
-					<li><span><a class="btn" href="${basePath}/StudyBlog/user/login">登录</a></span></li>
-					<li><span><a class="btn" href="${basePath}/StudyBlog/user/signin">注册</a></span></li>
-				</ul>
+				<shiro:guest>
+					<ul id="nologined" class="nav navbar-nav">
+						<li><span><a class="btn" href="${basePath}/StudyBlog/user/loginPage">登录</a></span></li>
+						<li><span><a class="btn" href="${basePath}/StudyBlog/user/signinPage">注册</a></span></li>
+					</ul>
+				</shiro:guest>
+				<shiro:user>
+					<ul id="logined" class="nav navbar-nav" >
+						<li><span>欢迎：
+								<a id="userinfo" class="btn" href="#">
+									<shiro:principal type="java.lang.String"/>
+								</a>
+							</span>
+						</li>
+						<li><span><a class="btn" href="${basePath}/StudyBlog/user/logout">退出</a></span></li>
+					</ul>
+				</shiro:user>
+				
+				
 			</div>
 			<!--
 				<div id="login">
