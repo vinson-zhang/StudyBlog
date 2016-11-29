@@ -32,7 +32,7 @@
 					</div>
 					<div class="form-group">
 						<a id="findpassword" class="btn btn-link">忘记密码？</a>
-						<a id="signin" class="btn btn-link" href="${basePath}/StudyBlog/user/signinPage" >没有账号</a>
+						<a id="signin" class="btn btn-link" href="${basePath}/StudyBlog/user/signin" >没有账号</a>
 					</div>
 					
 				</form>

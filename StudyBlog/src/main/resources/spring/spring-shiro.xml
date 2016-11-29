@@ -66,10 +66,13 @@
                 /*=anon
             	/css/**=anon
                 /js/**=anon
+                /fonts/**=anon
                 /images/*=anon
-                /images/default/**=authc
                 /images/carousel/*=anon
-                /StudyBlog/user/login=anon
+                /user/signin=anon
+                /user/usernameIsAvailable=anon
+                /user/headPhoto=anon
+                /images/default/**=anon
                 /logout=authc
                 /StudyBlog/user/getVerifyCodeImage=anon 
                 <!-- 其他资源需要认证 -->  

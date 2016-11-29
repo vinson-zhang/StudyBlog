@@ -7,7 +7,7 @@ import java.util.Date;
  * @author 张涛
  *
  */
-public class Blog {
+public class Blog2 {
 	
 	//博客ID
 	private String id;
@@ -16,7 +16,7 @@ public class Blog {
 	private String name;
 	
 	//博客作者
-	private String author;
+	private User author;
 	
 	//博客内容
 	private String content;
@@ -49,11 +49,12 @@ public class Blog {
 		this.name = name;
 	}
 
-	public String getAuthor() {
+
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 

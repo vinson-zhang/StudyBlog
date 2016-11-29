@@ -1,3 +1,16 @@
+.container{
+	padding: 0px;
+	color:#AAA;
+}
+.left-bar{
+	padding: 5px;
+}
+.userInfo{
+	color:#FFF;
+	font-weight:bold;
+	background: #CC3333;
+	margin: 5px;
+}
 .head-photo{
 	width: 100px;
 	height:100px;
@@ -8,6 +21,44 @@
 .head-photo-side{
 	text-align: left;
 }
+.head-photo-side ul{
+	list-style: none;
+}
 .hotblogs{
 	text-align: left;
+}
+
+.blog{
+	margin:0px;
+	padding:0px;
+}
+
+.blog-tab{
+	border-bottom: 1px dotted gray; 
+}
+
+.blog-tab-main{
+	
+	text-align: left;
+	
+	padding-top: 8px;
+}
+.blog-tab a{
+	color: #333333;;
+	font-size: 18;
+	padding: 10px;
+}
+
+.blog-tab-other{
+	text-align: left;
+}
+
+.hotblogs{
+	margin-left: 10px;
+	font-size: 18px;
+	font-family: cursive;
+}
+
+.hotblog{
+	
 }

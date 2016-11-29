@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@include file="/public/head.jspf"%>
+<script type="text/javascript" src="${basePath}/StudyBlog/js/blog/myBlog.js"></script>
 <link type="text/css" rel="stylesheet"
 	href="${basePath}/StudyBlog/css/blog/myblog.css"></link>
 <title>StudyBlog | 我的博客</title>
@@ -12,47 +13,44 @@
 	<%@include file="/public/navbar.jspf" %>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-3" style="border: 1px solid brown;height: 500px;">
-				<div class="userinfo col-sm-12" style="border: 1px solid brown;">
-					<div class="col-sm-5 head-photo-div"
-						style="border: 1px solid brown;">
+			<div class="col-sm-3 left-bar" style="border: 1px solid brown;height: 500px;">
+				<div class="userinfo col-sm-12" >
+					<div class="col-sm-5 head-photo-div">
 						<img class="head-photo img-circle"
-							src="${basePath}/StudyBlog/images/default/headPhoto/head.jpeg" />
+							src="${basePath}/StudyBlog/user/headPhoto" />
+					<!--  
+						<img class="head-photo img-circle"
+							src=${basePath}${currentUser.headPortrait} />
+					-->
 					</div>
-					<div class="col-sm-7 head-photo-side"
-						style="border: 1px solid brown;">
+					<div class="col-sm-7 head-photo-side">
 						<ul class="">
-							<li>昵称：</li>
-							<li>blog数量：</li>
-							<li>博龄：</li>
+							<li>昵称：${currentUser.nickname }</li>
+							<li>blog数量：${sum }</li>
+							<li>博龄：${blogAge }</li>
 							<li>总浏览量：</li>
 						</ul>
 
 					</div>
 				</div>
+				
 				<div class="hotblogs">
 					<div class="hotblog">
-						<p><a href="${basePath}/StudyBlog/blog/blogDetail/2">博客1</a></p>
+						<span class="glyphicon glyphicon-thumbs-up"></span>
+						<span><a href="${basePath}/StudyBlog/blog/blogDetail/2">博客1</a></span>
 					</div>
 					<div class="hotblog">
-						<p>博客2</p>
+						<span class="glyphicon glyphicon-thumbs-up"></span>
+						<span><a href="${basePath}/StudyBlog/blog/blogDetail/2">博客2</a></span>
 					</div>
 					<div class="hotblog">
-						<p>博客3</p>
+						<span class="glyphicon glyphicon-thumbs-up"></span>
+						<span><a href="${basePath}/StudyBlog/blog/blogDetail/3">博客3</a></span>
 					</div>
 				</div>
 
 			</div>
-			<div class="col-sm-9" style="border: 1px solid brown;height:500px;">
-				<div class="hotblog">
-						<p>博客1</p>
-					</div>
-					<div class="hotblog">
-						<p>博客2</p>
-					</div>
-					<div class="hotblog">
-						<p>博客3</p>
-					</div>
+			<div class="col-sm-9" id="blogs" style="border: 1px solid brown;height:500px;">
 			</div>
 		</div>
 

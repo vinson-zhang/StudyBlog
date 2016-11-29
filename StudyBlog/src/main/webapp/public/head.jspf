@@ -6,5 +6,6 @@
 %>
 <script type="text/javascript" src="${basePath}/StudyBlog/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="${basePath}/StudyBlog/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${basePath}/StudyBlog/js/jqueryPlug/jqerySession.js"></script>
 <link type="text/css" rel="stylesheet" href="${basepath}/StudyBlog/css/bootstrap.css"></link>
 <link type="text/css" rel="stylesheet" href="${basepath}/StudyBlog/css/public/base.css"></link>

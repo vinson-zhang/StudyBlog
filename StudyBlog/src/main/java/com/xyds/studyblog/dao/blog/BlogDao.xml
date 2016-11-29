@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xyds.studyblog.dao.blog.BlogDao">
+    <!-- 获得博客和其相关的用户  需要按照constructor>id>result>association。。。顺序写入-->
+	<resultMap type="com.xyds.studyblog.bean.Blog2" id="BlogResultWithUser">
+		<id column="blog_id" property="id"/>
+		<result column="blog_name" property="name"/>
+		<result column="blog_content" property="content"/>
+		<result column="blog_create_time" property="createTime"/>
+		<result column="blog_modify_time" property="modifyTime"/>
+		<result column="blog_isVisible" property="isVisible"/>
+		<result column="blog_read_times" property="readTimes"/>
+		<association property="author" column="blog_author" javaType="com.xyds.studyblog.bean.User">
+			<id column="user_id" property="id"/>
+			<result column="email" property="email"/>
+			<result column="nickname" property="nickname"/>
+		</association>
+	</resultMap>
 
-	<select id="selectBlogById" parameterType="int" resultType="com.xyds.studyblog.bean.Blog">
-		select 
-			blog_id as id,
-			blog_name as name,
-			blog_author as author,
-			blog_content as content,
-			blog_create_time as createTime,
-			blog_modify_time as modifyTime,
-			blog_isVisible as isVisible
-		 from t_blog where blog_id = #{blogId}
+	<select id="selectBlogById" parameterType="int" resultMap="BlogResultWithUser">
+		select * 
+		from t_blog b left join t_user u
+		on b.blog_author = u.user_id
+		where b.blog_id = #{blogId}
 	</select>
 	
 	<select id="selectMyBlogsByPage" parameterType="String" resultType="com.xyds.studyblog.bean.Blog">
@@ -30,6 +40,32 @@
 		 	where email = #{username}
 		 )
 	</select>
+	
+	<select id="selectBlogsByUserId" parameterType="String" resultType="com.xyds.studyblog.bean.Blog">
+		select 
+			blog_id as id,
+			blog_name as name,
+			blog_author as author,
+			blog_content as content,
+			blog_create_time as createTime,
+			blog_modify_time as modifyTime,
+			blog_isVisible as isVisible
+		 from t_blog 
+		 where blog_author =#{userId}
+	</select>
+	
+	<select id="selectBlog2sByUserId" parameterType="String" resultMap="BlogResultWithUser">
+		select * 
+		from t_blog b left join t_user u
+		on b.blog_author = u.user_id
+		where b.blog_author = #{userId}
+	</select>
+	
+	<update id="addReadTimes" parameterType="int">
+		update t_blog 
+		set blog_read_times = blog_read_times+1
+		where blog_id = #{blogId}
+	</update>
 	
    <insert id="addBlog" parameterType="com.xyds.studyblog.bean.Blog">
       insert into t_blog(blog_name,blog_author,blog_content,blog_modify_time,blog_isVisible)

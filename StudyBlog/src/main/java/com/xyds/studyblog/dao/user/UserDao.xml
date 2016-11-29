@@ -20,4 +20,8 @@
    <select id="getUserByUsername" resultMap="UserResult" parameterType="String">
    		select * from t_user where email=#{username}
    </select>
+   <insert id="addUser" parameterType="User">
+   		insert into t_user(email,nickname,head_portrait,password,user_create_time)
+   		value(#{email},#{nickname},#{headPortrait},#{password},#{createTime})
+   </insert>
 </mapper>

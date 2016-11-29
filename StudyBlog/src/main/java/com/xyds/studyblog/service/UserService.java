@@ -1,5 +1,7 @@
 package com.xyds.studyblog.service;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.xyds.studyblog.bean.User;
@@ -19,5 +21,19 @@ public interface UserService {
 	 * @return
 	 */
 	public User getUserByUsername(String username);
+	
+	/**
+	 * 配合bootstrap表单验证插件，验证用户名是否可用
+	 * @return
+	 */
+	public Map<String,Boolean> usernameIsAvailable(String username);
+	
+	/**
+	 * 添加用户
+	 * @param user
+	 * @return
+	 * 返回 1 表示成功，返回 0，表示插入失败
+	 */
+	public int addUser(User user);
 
 }

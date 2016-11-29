@@ -14,5 +14,12 @@ public interface UserDao {
 	 * @return
 	 */
 	public User getUserByUsername(String username);
+	
+	/**
+	 * 添加新的用户
+	 * @param user
+	 * @return
+	 */
+	public void addUser(User user);
 
 }

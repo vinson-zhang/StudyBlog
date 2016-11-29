@@ -30,12 +30,12 @@
 				<shiro:guest>
 					<ul id="nologined" class="nav navbar-nav">
 						<li><span><a class="btn" href="${basePath}/StudyBlog/user/loginPage">登录</a></span></li>
-						<li><span><a class="btn" href="${basePath}/StudyBlog/user/signinPage">注册</a></span></li>
+						<li><span><a class="btn" href="${basePath}/StudyBlog/user/signin">注册</a></span></li>
 					</ul>
 				</shiro:guest>
 				<shiro:user>
 					<ul id="logined" class="nav navbar-nav" >
-						<li><span>欢迎：
+						<li><span>
 								<a id="userinfo" class="btn" href="#">
 									<shiro:principal type="java.lang.String"/>
 								</a>

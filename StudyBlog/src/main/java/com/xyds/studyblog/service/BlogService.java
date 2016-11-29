@@ -1,10 +1,12 @@
 package com.xyds.studyblog.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.xyds.studyblog.bean.Blog;
+import com.xyds.studyblog.bean.Blog2;
 
 /**
  * 博客相关业务的服务类
@@ -27,7 +29,7 @@ public interface BlogService {
 	 * @param blogId
 	 * @return
 	 */
-	public Blog selectBlogById(int blogId);
+	public Blog2 selectBlogById(int blogId);
 	
 	/**
 	 * 根据用户名，即email查询用户所有的博客，分页，（暂时不分页）
@@ -35,5 +37,24 @@ public interface BlogService {
 	 * @return
 	 */
 	public List<Blog> selectMyBlogsByPage(String username);
+	
+	/**
+	 * 获取处理过的用户信息,暂时只包括blog的数量
+	 * @return
+	 */
+	public Map<String,Object> selectUserInfo(String userId);
+	
+	/**
+	 * 根据用户ID查询用户的所有blog
+	 * @param userId
+	 * @return
+	 */
+	public List<Blog2> selectAllBlogsByUserId(String userId);
+	
+	/**
+	 * 增加阅读次数
+	 * @param blogId
+	 */
+	public void addReadTimes(int blogId);
 
 }

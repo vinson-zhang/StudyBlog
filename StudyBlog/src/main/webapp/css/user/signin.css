@@ -1,6 +1,6 @@
 body{
 	margin:0px auto;
-	width: 80%;
+	width: 90%;
 }
 
 .panel-title{
@@ -10,5 +10,27 @@ body{
 .login-side{
 	margin:0px auto;
 	width: 50%;
-	margin-top: 8%;
+	margin-top: 5%;
+}
+
+.head-photo{
+	width:153px;
+	height:153px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 0px;
+}
+
+.head-photo img{
+	width:150px;
+	height:150px;
+}
+
+form{
+	border: 1px solid #337ab7;
+	margin-top: 5px;
+}
+
+form input[type="file"]{
+	margin-top: 1%;
 }

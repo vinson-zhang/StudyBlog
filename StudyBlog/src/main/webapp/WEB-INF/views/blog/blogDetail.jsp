@@ -17,17 +17,17 @@
 				<div class="col-xs-9 blog-detail" style="border: 1px solid brown;">
 					<div class="blog-title-bar col-sm-12">
 						<div class="blog-title col-sm-12">
-							测试博客
+							${blog.name }
 						</div>
 						<div class="col-sm-12 blog-other">
 							<div class="col-sm-4 blog-author">
-								<span>作者：${blog.author}</span>
+								<span>作者：${blog.author.nickname}</span>
 							</div>
 							<div class="col-sm-4 blog-create-time">
-								<span>创建时间：${blog.createTime}</span>
+								<span>创建时间:${createTime}</span>
 							</div>
 							<div class="col-sm-4 blog-hot">
-								<span>点击量：12</span>
+								<span>点击量：${blog.readTimes}</span>
 							</div>
 						</div>
 					</div>
@@ -35,7 +35,9 @@
 					<div class="col-sm-12 blog-content">
 						<hr style="border: 2px solid greenyellow;"/>
 						<p>${blog.content}</p>
-						<p>I Love You!碧琳</p>
+						<!-- 
+							<p>I Love You!碧琳</p>
+						 -->
 					</div>
 				</div>
 				<div class="col-xs-3 blog-hot" style="border: 1px solid brown;">
@@ -48,5 +50,4 @@
 			</div>
 		</div>
 	</body>
-
 </html>
