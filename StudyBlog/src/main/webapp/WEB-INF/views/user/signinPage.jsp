@@ -71,6 +71,16 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="verifyCode" class="col-sm-3 control-label">验证码：</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="verifyCode" id="verifyCode" placeholder="验证码">
+						</div>
+						<div class="col-sm-3 verify-code">
+							<img alt="请刷新" src="/StudyBlog/user/getVerifyCodeImage" title="看不清楚请点击图片">
+						</div>
+						
+					</div>
+					<div class="form-group">
 						<button type="button" id="btn-signin" class="btn btn-primary">注册</button>
 						<button type="button" id="btn-reset" class="btn btn-primary">清空</button>
 					</div>

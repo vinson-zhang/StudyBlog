@@ -34,3 +34,13 @@ form{
 form input[type="file"]{
 	margin-top: 1%;
 }
+
+.verify-code{
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+.verify-code img{
+	width:100px;
+	height: 35px;
+}

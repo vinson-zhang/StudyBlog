@@ -74,7 +74,8 @@
                 /user/headPhoto=anon
                 /images/default/**=anon
                 /logout=authc
-                /StudyBlog/user/getVerifyCodeImage=anon 
+                /user/getVerifyCodeImage=anon 
+                /user/verifyCodeIsCorrect=anon
                 <!-- 其他资源需要认证 -->  
                 /** = authc   
                <!--  /admin/listUser**=authc,perms[admin:manage]  --> 

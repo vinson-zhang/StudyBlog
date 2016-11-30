@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -43,6 +44,7 @@ import com.xyds.studyblog.bean.User;
 import com.xyds.studyblog.service.UserService;
 import com.xyds.studyblog.util.MyJsonUtil;
 import com.xyds.studyblog.util.UserUtils;
+import com.xyds.studyblog.util.VerifyCodeUtils;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -87,7 +89,7 @@ public class UserController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
-	public String signin(User user, String path, HttpServletRequest request)
+	public String signin(User user, String path,String verifyCode,HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		String userId = user.getEmail();
 		System.out.println(path);
@@ -119,6 +121,7 @@ public class UserController {
 		}
 		user.setCreateTime(new Date());
 		user.setHeadPortrait(path);
+		String verifyCodeTemp = (String) request.getSession().getAttribute("rand");
 		userService.addUser(user);
 		return "user/loginPage";
 	}
@@ -252,6 +255,22 @@ public class UserController {
 					.forward(request, response);
 		}
 	}
+	
+	
+	/**
+	 * 
+	 * @param verifyCode
+	 * @return
+	 */
+	@RequestMapping(value="/verifyCodeIsCorrect")
+	public @ResponseBody boolean verifyCodeIsCorrect(String verifyCode,HttpServletRequest request){
+		String tempVerifyCode = (String) request.getSession().getAttribute("rand");
+		if(tempVerifyCode.equalsIgnoreCase(verifyCode)){
+			request.getSession().removeAttribute("rand");
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * 退出登录
@@ -270,6 +289,23 @@ public class UserController {
 			request.getRequestDispatcher("/index.jsp").forward(request,
 					response);
 		}
+	}
+	
+	@RequestMapping(value="/getVerifyCodeImage")
+	public @ResponseBody void verifyCode(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		   response.setHeader("Pragma", "No-cache");  
+	        response.setHeader("Cache-Control", "no-cache");  
+	        response.setDateHeader("Expires", 0);  
+	        response.setContentType("image/jpeg");  
+	          
+	        //生成随机字串  
+	        String verifyCode = VerifyCodeUtils.generateVerifyCode(4);  
+	        //存入会话session  
+	        HttpSession session = request.getSession(true);  
+	        session.setAttribute("rand", verifyCode.toLowerCase());  
+	        //生成图片  
+	        int w = 200, h = 80;  
+	        VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);  
 	}
 
 }

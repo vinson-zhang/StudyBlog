@@ -8,9 +8,23 @@ body{
 }
 
 .login-side{
-	width: 20%;
-	height: 300px;
+	width: 30%;
+	
 	float: right;
 	margin-top: 8%;
 	margin-right: 10%;
+}
+
+.verify-code{
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+.verify-code img{
+	width:90px;
+	height: 35px;
+}
+
+#login-btn{
+	margin-top: 8px;
 }

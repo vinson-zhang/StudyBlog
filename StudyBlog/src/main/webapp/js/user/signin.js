@@ -40,8 +40,17 @@ function bindEvent(){
 		resetForm();
 	});
 	
+	/**
+	 * 更换验证码
+	 */
+	changeVerifyCodeImage();
+	
 }
 
+/**
+ * 验证表单
+ * @returns {Boolean}
+ */
 function verifyForm(){
 	var nickname = $("#nickname").val();
 	//将jquery对象转换成dom对象  
@@ -106,7 +115,22 @@ function verifyForm(){
 				user.nickname = nickname;
 				user.email = email;
 				user.password = password;
-				submitUserInfo(user);
+				var verifyCode = $("#verifyCode").val();
+				$.post("/StudyBlog/user/verifyCodeIsCorrect",
+						{
+							verifyCode:verifyCode
+						},
+						function(data){
+							if(data == true || data == "true"){
+								submitUserInfo(user);
+							}else{
+								showNoticeInfo("验证码输入有误，请重新输入");
+								$("#verifyCode").val(null);
+								d = new Date();
+								$(".verify-code img").attr("src","/StudyBlog/user/getVerifyCodeImage?date="+d.getTime());
+							}
+						});
+				
 			}else{
 				showNoticeInfo("邮箱被占用，请更换邮箱或者找回密码");
 				return false;
@@ -186,6 +210,16 @@ function changeImg(path){
 		return false;
 	}
 	$(".head-photo img").attr("src",path);
+}
+
+/**
+ * 更换验证码
+ */
+function changeVerifyCodeImage(){
+	$(".verify-code img").on("click",function(){
+		d = new Date();
+		$(".verify-code img").attr("src","/StudyBlog/user/getVerifyCodeImage?date="+d.getTime());
+	});
 }
 
 
