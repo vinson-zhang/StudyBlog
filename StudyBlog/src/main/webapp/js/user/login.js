@@ -10,8 +10,19 @@ $(function(){
 	 * 更换验证码
 	 */
 	changeVerifyCodeImage();
+	jpEvent();
 	
 });
+/**
+ * 按下enter，触发登录
+ */
+function jpEvent(){
+	$(document).keydown(function(event){
+		if(event.keyCode==13){
+			login();
+		}
+	}); 
+}
 
 /**
  * 用于显示提示内容
