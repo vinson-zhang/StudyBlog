@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+.nav-pills{
+	width: 800px;
+}
+
+#logined{
+	display: none;
+}

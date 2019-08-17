@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xyds.studyblog.dao.user.UserDao">
+   <resultMap type="User" id="UserResult">
+   		<id column="user_id" property="id"/>
+   		<result column="email" property="email"/>
+   		<result column="gender" property="gender"/>
+   		<result column="nickname" property="nickname"/>
+   		<result column="phone" property="phone"/>
+   		<result column="age" property="age"/>
+   		<result column="head_portrait" property="headPortrait"/>
+   		<result column="user_create_time" property="createTime"/>
+   		<result column="user_isActive" property="isActive"/>
+   		<result column="user_isAvaiable" property="isAvailable"/>
+   </resultMap>
+   <select id="getPassword" parameterType="String" resultType="String">
+      select password from t_user where userName = #{userName}
+   </select>
+   
+   <select id="getUserByUsername" resultMap="UserResult" parameterType="String">
+   		select * from t_user where email=#{username}
+   </select>
+   <insert id="addUser" parameterType="User">
+   		insert into t_user(email,nickname,head_portrait,password,user_create_time)
+   		value(#{email},#{nickname},#{headPortrait},#{password},#{createTime})
+   </insert>
+</mapper>
