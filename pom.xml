@@ -177,7 +177,27 @@
 
 
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<env>test</env>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
+
 
 
 
@@ -190,14 +210,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<!--<version>3.1</version>-->
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
+
 
 			<plugin>
 				<groupId>com.juvenxu.portable-config-maven-plugin</groupId>
@@ -210,6 +223,28 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.2</version>
+				<configuration>
+					<webResources>
+						<!--动态指定文件-->
+						<resource>
+							<directory>src/main/resources/env/${env}</directory>
+							<targetPath>WEB-INF/classes/properties</targetPath>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+					<packagingExcludes>
+						**/portable/**,
+						**/env/**
+					</packagingExcludes>
+					<includeEmptyDirectories>false</includeEmptyDirectories>
+				</configuration>
+
 			</plugin>
 
 		</plugins>
